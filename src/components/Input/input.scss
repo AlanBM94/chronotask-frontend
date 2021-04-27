@@ -1,0 +1,47 @@
+@import './../../sass/abstracts/variables';
+@import './../../sass/abstracts/mixins';
+
+.input {
+    display: flex;
+    width: 100%;
+    height: 5rem;
+    background-color: $gray;
+    border: 3px solid transparent;
+    transition: 0.1s all ease;
+    &--on {
+        border: 3px solid $blue-primary;
+    }
+
+    & div {
+        height: 100%;
+    }
+    &__icon {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & i {
+            font-size: 1.5rem;
+            transition: 0.1s all ease;
+            @include whiteInputText;
+        }
+        &--on {
+            i {
+                color: $blue-primary;
+            }
+        }
+    }
+    &__element {
+        width: 80%;
+        & input {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            font-size: 1.5rem;
+            @include whiteInputText;
+            &::placeholder {
+                @include whiteInputText;
+            }
+        }
+    }
+}
