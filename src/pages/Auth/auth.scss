@@ -1,5 +1,71 @@
-.auth {
+@import './../../sass/abstracts/variables';
+
+.authentication {
     width: 100%;
     height: 100vh;
     display: flex;
+    background: $black-primary;
+
+    &__image {
+        background: red;
+        width: 50%;
+        height: 100%;
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 1000px) {
+            display: none;
+        }
+    }
+    &__form {
+        & svg {
+            width: 75%;
+        }
+        width: 90rem;
+        height: 80%;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        & form {
+            width: 40%;
+            margin-top: 3rem;
+            height: 30rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            @media (max-width: 1000px) {
+                width: 70%;
+            }
+        }
+    }
+
+    &__showPassword {
+        display: flex;
+        & p {
+            font-size: 1.2rem;
+            margin-left: 1rem;
+            color: white;
+        }
+    }
+    &__bottom {
+        display: flex;
+        & p,
+        span {
+            font-size: 1.4rem;
+        }
+        & p {
+            color: white;
+        }
+        & span {
+            margin-left: 0.5rem;
+            color: #0be8d1;
+            font-weight: 700;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }

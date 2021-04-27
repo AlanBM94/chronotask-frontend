@@ -3,6 +3,7 @@ import Logo from './../../images/logo';
 import Login from '../../components/LogIn';
 import SignUp from '../../components/SignUp';
 import './auth.scss';
+import background from './../../images/background.jpg';
 
 const Authentication = () => {
     const [formType, setFormType] = useState('signup');
@@ -16,12 +17,12 @@ const Authentication = () => {
     };
 
     return (
-        <div className="auth">
-            <div className="auth__image">
-                <img src="./../../images/background.jpg" alt="logo" />
+        <div className="authentication">
+            <div className="authentication__image">
+                <img src={background} alt="background" />
             </div>
 
-            <div className="auth__content">
+            <div className="authentication__form">
                 <Logo />
                 {formType === 'signup' && (
                     <SignUp changeFormHandler={changeFormHandler} />
