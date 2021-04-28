@@ -8,6 +8,13 @@
     background-color: $gray;
     border: 3px solid transparent;
     transition: 0.1s all ease;
+
+    &--white {
+        background: white;
+        color: $black-primary;
+        border: 3px solid $blue-primary;
+    }
+
     &--on {
         border: 3px solid $blue-primary;
     }
@@ -20,12 +27,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
         & i {
             font-size: 1.5rem;
             transition: 0.1s all ease;
             @include whiteInputText;
         }
         &--on {
+            i {
+                color: $blue-primary;
+            }
+        }
+        &--white {
             i {
                 color: $blue-primary;
             }
@@ -41,6 +54,14 @@
             @include whiteInputText;
             &::placeholder {
                 @include whiteInputText;
+            }
+        }
+        &--white {
+            & input {
+                color: $black-primary;
+                &::placeholder {
+                    color: $black-primary;
+                }
             }
         }
     }

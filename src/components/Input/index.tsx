@@ -7,6 +7,7 @@ interface InputProps {
     icon: string;
     value: string;
     type: string;
+    color?: string;
     onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -15,6 +16,7 @@ const Input: React.FC<InputProps> = ({
     placeholder,
     icon,
     type,
+    color,
     value,
     onChangeHandler,
 }) => {
@@ -29,15 +31,19 @@ const Input: React.FC<InputProps> = ({
     };
 
     return (
-        <div className={`input ${isActive ? 'input--on' : 'input--of'}`}>
+        <div
+            className={`input input--${color} ${
+                isActive ? 'input--on' : 'input--of'
+            }`}
+        >
             <div
-                className={`input__icon ${
+                className={`input__icon input__icon--${color} ${
                     isActive ? 'input__icon--on' : 'input__icon--of'
                 }`}
             >
                 <i className={icon}></i>
             </div>
-            <div className="input__element">
+            <div className={`input__element input__element--${color}`}>
                 <input
                     autoComplete="off"
                     type={type}
