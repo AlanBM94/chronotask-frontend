@@ -48,6 +48,16 @@
             margin-left: 1rem;
             color: white;
         }
+        &--black {
+            align-items: center;
+            align-self: flex-start;
+            margin: 2rem 0;
+            & p {
+                color: black;
+                margin-top: 0 !important;
+                margin-left: 1rem;
+            }
+        }
     }
     &__bottom {
         display: flex;

@@ -5,9 +5,18 @@ import './resetPasswordForm.scss';
 
 const ResetPasswordForm: React.FC = () => {
     const [password, setPassword] = useState('');
+    const [passwordType, setPasswordType] = useState('password');
 
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+    };
+
+    const showPasswordHandler = () => {
+        if (passwordType === 'password') {
+            setPasswordType('text');
+        } else {
+            setPasswordType('password');
+        }
     };
 
     return (
@@ -17,11 +26,15 @@ const ResetPasswordForm: React.FC = () => {
                 name="password"
                 placeholder="Nueva contraseña"
                 icon="fas fa-lock"
-                type="password"
+                type={passwordType}
                 color="white"
                 value={password}
                 onChangeHandler={onChangeHandler}
             />
+            <div className="authentication__showPassword authentication__showPassword--black">
+                <input type="checkbox" onClick={showPasswordHandler} />
+                <p>Mostrar Contraseña</p>
+            </div>
             <Button
                 text="Guardar contraseña"
                 color="blue"
