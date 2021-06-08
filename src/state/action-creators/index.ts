@@ -14,6 +14,11 @@ interface ILogInData {
     password: string;
 }
 
+interface IResetPasswordData {
+    password: string;
+    token: string;
+}
+
 const createError = (error: any) => {
     let err = '';
     if (error.response.data.message) {
@@ -28,42 +33,86 @@ const createError = (error: any) => {
     return err;
 };
 
-export const signUp = (signUpData: ISignUpData) => async (
-    dispatch: Dispatch<Action>
-) => {
-    dispatch({ type: ActionType.SIGNUP });
+export const signUp =
+    (signUpData: ISignUpData) => async (dispatch: Dispatch<Action>) => {
+        dispatch({ type: ActionType.SIGNUP });
 
-    try {
-        const { data } = await axios.post(
-            'http://localhost:7000/api/v1/users/signup',
-            signUpData
-        );
+        try {
+            const { data } = await axios.post(
+                'http://localhost:7000/api/v1/users/signup',
+                signUpData
+            );
 
-        dispatch({ type: ActionType.SIGNUP_COMPLETE, payload: data });
-    } catch (error) {
-        dispatch({
-            type: ActionType.SIGNUP_ERROR,
-            payload: createError(error),
-        });
-    }
-};
+            dispatch({ type: ActionType.SIGNUP_COMPLETE, payload: data });
+        } catch (error) {
+            dispatch({
+                type: ActionType.SIGNUP_ERROR,
+                payload: createError(error),
+            });
+        }
+    };
 
-export const logIn = (logInData: ILogInData) => async (
-    dispatch: Dispatch<Action>
-) => {
-    dispatch({ type: ActionType.LOGIN });
+export const logIn =
+    (logInData: ILogInData) => async (dispatch: Dispatch<Action>) => {
+        dispatch({ type: ActionType.LOGIN });
 
-    try {
-        const { data } = await axios.post(
-            'http://localhost:7000/api/v1/users/login',
-            logInData
-        );
+        try {
+            const { data } = await axios.post(
+                'http://localhost:7000/api/v1/users/login',
+                logInData
+            );
 
-        dispatch({ type: ActionType.LOGIN_COMPLETE, payload: data });
-    } catch (error) {
-        dispatch({
-            type: ActionType.LOGIN_ERROR,
-            payload: createError(error),
-        });
-    }
-};
+            dispatch({ type: ActionType.LOGIN_COMPLETE, payload: data });
+        } catch (error) {
+            dispatch({
+                type: ActionType.LOGIN_ERROR,
+                payload: createError(error),
+            });
+        }
+    };
+
+export const resetPassword =
+    (resetPasswordData: IResetPasswordData) =>
+    async (dispatch: Dispatch<Action>) => {
+        dispatch({ type: ActionType.RESET_PASSWORD });
+
+        try {
+            const { data } = await axios.patch(
+                `http://localhost:7000/api/v1/users/resetPassword/${resetPasswordData.token}`,
+                { password: resetPasswordData.password }
+            );
+
+            dispatch({
+                type: ActionType.RESET_PASSWORD_COMPLETE,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: ActionType.RESET_PASSWORD_ERROR,
+                payload: createError(error),
+            });
+        }
+    };
+
+export const forgotPassword =
+    (email: string, cleanForm: () => void) =>
+    async (dispatch: Dispatch<Action>) => {
+        dispatch({ type: ActionType.FORGOT_PASSWORD });
+
+        try {
+            await axios.post(
+                `http://localhost:7000/api/v1/users/forgotPassword`,
+                { email }
+            );
+
+            dispatch({
+                type: ActionType.FORGOT_PASSWORD_COMPLETE,
+            });
+            cleanForm();
+        } catch (error) {
+            dispatch({
+                type: ActionType.FORGOT_PASSWORD_ERROR,
+                payload: createError(error),
+            });
+        }
+    };

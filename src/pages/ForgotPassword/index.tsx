@@ -1,12 +1,11 @@
 import React from 'react';
-import './resetPassword.scss';
 import chronotask_black_logo from './../../images/chronotask-black-logo.png';
-import ResetPasswordForm from './../../components/ResetPasswordForm';
-import Toast from './../../components/Toast';
 import Spinner from './../../components/Spinner';
+import Toast from './../../components/Toast';
+import ForgotPasswordForm from './../../components/ForgotPasswordForm';
 import { useTypedSelector } from './../../hooks/use-typed-selector';
 
-const ResetPassword: React.FC = () => {
+const ForgotPassword: React.FC = () => {
     const auth = useTypedSelector((state) => state.auth);
 
     return (
@@ -28,15 +27,15 @@ const ResetPassword: React.FC = () => {
                                     }}
                                 />
                             )}
-                            {auth.user && (
+                            {auth.forgotPasswordEmailHasBeenSent && (
                                 <Toast
                                     info={{
-                                        message: `Bienvenido ${auth.user.data.user.name}`,
+                                        message: `Se te ha enviado un email para recuperar tu contraseña`,
                                         type: 'success',
                                     }}
                                 />
                             )}
-                            <ResetPasswordForm />
+                            <ForgotPasswordForm />
                         </div>
                     </>
                 )}
@@ -45,4 +44,4 @@ const ResetPassword: React.FC = () => {
     );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

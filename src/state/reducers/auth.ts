@@ -8,6 +8,7 @@ interface AuthState {
     error: string | null;
     isAuthenticated: boolean;
     user: UserResponse | null;
+    forgotPasswordEmailHasBeenSent: boolean;
 }
 
 const initialState: AuthState = {
@@ -15,6 +16,7 @@ const initialState: AuthState = {
     error: null,
     isAuthenticated: false,
     user: null,
+    forgotPasswordEmailHasBeenSent: false,
 };
 
 const reducer = produce((state: AuthState = initialState, action: Action) => {
@@ -45,6 +47,36 @@ const reducer = produce((state: AuthState = initialState, action: Action) => {
             state.error = null;
             return state;
         case ActionType.LOGIN_ERROR:
+            state.loading = false;
+            state.error = action.payload;
+            state.user = null;
+            return state;
+        case ActionType.FORGOT_PASSWORD:
+            state.loading = true;
+            state.error = null;
+            return state;
+        case ActionType.FORGOT_PASSWORD_COMPLETE:
+            state.loading = false;
+            state.isAuthenticated = true;
+            state.forgotPasswordEmailHasBeenSent = true;
+            state.error = null;
+            return state;
+        case ActionType.FORGOT_PASSWORD_ERROR:
+            state.loading = false;
+            state.error = action.payload;
+            state.forgotPasswordEmailHasBeenSent = false;
+            return state;
+        case ActionType.RESET_PASSWORD:
+            state.loading = true;
+            state.error = null;
+            return state;
+        case ActionType.RESET_PASSWORD_COMPLETE:
+            state.loading = false;
+            state.isAuthenticated = true;
+            state.user = action.payload;
+            state.error = null;
+            return state;
+        case ActionType.RESET_PASSWORD_ERROR:
             state.loading = false;
             state.error = action.payload;
             state.user = null;

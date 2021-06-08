@@ -29,10 +29,43 @@ export interface LogInError {
     payload: string;
 }
 
+export interface ForgotPassword {
+    type: ActionType.FORGOT_PASSWORD;
+}
+
+export interface ForgotPasswordComplete {
+    type: ActionType.FORGOT_PASSWORD_COMPLETE;
+}
+
+export interface ForgotPasswordError {
+    type: ActionType.FORGOT_PASSWORD_ERROR;
+    payload: string;
+}
+
+export interface ResetPassword {
+    type: ActionType.RESET_PASSWORD;
+}
+
+export interface ResetPasswordComplete {
+    type: ActionType.RESET_PASSWORD_COMPLETE;
+    payload: UserResponse;
+}
+
+export interface ResetPasswordError {
+    type: ActionType.RESET_PASSWORD_ERROR;
+    payload: string;
+}
+
 export type Action =
     | SignUp
     | SignUpComplete
     | SignUpError
     | LogIn
     | LogInComplete
-    | LogInError;
+    | LogInError
+    | ForgotPassword
+    | ForgotPasswordComplete
+    | ForgotPasswordError
+    | ResetPassword
+    | ResetPasswordComplete
+    | ResetPasswordError;
