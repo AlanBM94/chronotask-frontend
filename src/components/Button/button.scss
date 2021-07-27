@@ -2,6 +2,8 @@
 
 .button {
     height: 5rem;
+    width: fit-content;
+    padding: 10px 16px;
     &--blue {
         background: $blue-primary;
         color: white;

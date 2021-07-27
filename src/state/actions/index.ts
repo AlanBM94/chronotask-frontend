@@ -15,6 +15,10 @@ export interface SignUpError {
     payload: string;
 }
 
+export interface SendEmailVerification {
+    type: ActionType.SEND_EMAIL_VERIFICATION;
+}
+
 export interface LogIn {
     type: ActionType.LOGIN;
 }
@@ -55,6 +59,17 @@ export interface ResetPasswordError {
     type: ActionType.RESET_PASSWORD_ERROR;
     payload: string;
 }
+export interface ConfirmEmail {
+    type: ActionType.CONFIRM_EMAIL;
+}
+export interface ConfirmEmailSuccess {
+    type: ActionType.CONFIRM_EMAIL_SUCCESS;
+    payload: UserResponse;
+}
+export interface ConfirmEmailError {
+    type: ActionType.CONFIRM_EMAIL_ERROR;
+    payload: string;
+}
 
 export type Action =
     | SignUp
@@ -68,4 +83,8 @@ export type Action =
     | ForgotPasswordError
     | ResetPassword
     | ResetPasswordComplete
-    | ResetPasswordError;
+    | ResetPasswordError
+    | SendEmailVerification
+    | ConfirmEmail
+    | ConfirmEmailSuccess
+    | ConfirmEmailError;

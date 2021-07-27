@@ -43,7 +43,11 @@ export const signUp =
                 signUpData
             );
 
-            dispatch({ type: ActionType.SIGNUP_COMPLETE, payload: data });
+            if (data.message === 'Confirm your email to login') {
+                dispatch({ type: ActionType.SEND_EMAIL_VERIFICATION });
+            } else {
+                dispatch({ type: ActionType.SIGNUP_COMPLETE, payload: data });
+            }
         } catch (error) {
             dispatch({
                 type: ActionType.SIGNUP_ERROR,
@@ -61,6 +65,8 @@ export const logIn =
                 'http://localhost:7000/api/v1/users/login',
                 logInData
             );
+
+            console.log('this is the login data', data);
 
             dispatch({ type: ActionType.LOGIN_COMPLETE, payload: data });
         } catch (error) {
@@ -112,6 +118,28 @@ export const forgotPassword =
         } catch (error) {
             dispatch({
                 type: ActionType.FORGOT_PASSWORD_ERROR,
+                payload: createError(error),
+            });
+        }
+    };
+
+export const confirmEmail =
+    (token: string) => async (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.CONFIRM_EMAIL,
+        });
+        try {
+            const { data } = await axios.patch(
+                `http://localhost:7000/api/v1/users/confirmEmail/${token}`
+            );
+
+            dispatch({
+                type: ActionType.CONFIRM_EMAIL_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: ActionType.CONFIRM_EMAIL_ERROR,
                 payload: createError(error),
             });
         }

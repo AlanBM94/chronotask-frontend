@@ -5,9 +5,20 @@ import ResetPasswordForm from './../../components/ResetPasswordForm';
 import Toast from './../../components/Toast';
 import Spinner from './../../components/Spinner';
 import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { Redirect } from 'react-router-dom';
 
 const ResetPassword: React.FC = () => {
     const auth = useTypedSelector((state) => state.auth);
+
+    if (auth.user) {
+        return (
+            <Redirect
+                to={{
+                    pathname: '/dashboard',
+                }}
+            />
+        );
+    }
 
     return (
         <div className="resetPassword">
@@ -31,7 +42,7 @@ const ResetPassword: React.FC = () => {
                             {auth.user && (
                                 <Toast
                                     info={{
-                                        message: `Bienvenido ${auth.user.data.user.name}`,
+                                        message: `Bienvenido`,
                                         type: 'success',
                                     }}
                                 />

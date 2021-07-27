@@ -1,3 +1,5 @@
+@import './../abstracts/variables';
+
 *,
 *::after,
 *::before {
@@ -17,8 +19,9 @@ a {
 
 input {
     border: none;
-    &:focus {
+    &:focus, &:checked {
         outline: none;
+        background: transparent;
     }
 }
 
@@ -58,4 +61,10 @@ body {
     // @include respond(tab-port) {
     //     padding: 0;
     // }
+}
+
+form a {
+    font-size: 13px;
+    color: $blue-primary;
+    font-weight: 700;
 }

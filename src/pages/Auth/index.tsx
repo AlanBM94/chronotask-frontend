@@ -6,6 +6,7 @@ import background from './../../images/background.jpg';
 import { useTypedSelector } from './../../hooks/use-typed-selector';
 import Spinner from './../../components/Spinner';
 import Toast from './../../components/Toast';
+import { Redirect } from 'react-router-dom';
 
 import './auth.scss';
 
@@ -21,6 +22,16 @@ const Authentication = () => {
         }
     };
 
+    if (auth.user) {
+        return (
+            <Redirect
+                to={{
+                    pathname: '/dashboard',
+                }}
+            />
+        );
+    }
+
     return (
         <div className="authentication">
             <div className="authentication__image">
@@ -29,10 +40,20 @@ const Authentication = () => {
             {auth.error && (
                 <Toast info={{ message: auth.error, type: 'error' }} />
             )}
+
+            {auth.message && (
+                <Toast
+                    info={{
+                        message: auth.message,
+                        type: 'success',
+                    }}
+                />
+            )}
+
             {auth.user && (
                 <Toast
                     info={{
-                        message: `Bienvenido ${auth.user.data.user.name}`,
+                        message: `Bienvenido`,
                         type: 'success',
                     }}
                 />

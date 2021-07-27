@@ -65,7 +65,11 @@ const SignUp: React.FC<ISignUp> = ({ changeFormHandler }) => {
                 <input type="checkbox" onClick={showPasswordHandler} />
                 <p>Mostrar Contraseña</p>
             </div>
-            <Button text="Registrar" color="blue" />
+            <Button
+                text="Registrar"
+                color="blue"
+                customStyles={{ width: '100%' }}
+            />
             <div className="authentication__bottom">
                 <p>Ya tienes una cuenta?</p>
                 <span onClick={() => changeFormHandler('login')}>

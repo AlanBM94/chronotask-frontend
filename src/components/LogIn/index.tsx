@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Input from './../Input';
 import Button from './../Button';
 import { useActions } from './../../hooks/use-action';
@@ -56,13 +57,18 @@ const LogIn: React.FC<ILogIn> = ({ changeFormHandler }) => {
                 <input type="checkbox" onClick={showPasswordHandler} />
                 <p>Mostrar Contraseña</p>
             </div>
-            <Button text="Iniciar sesión" color="blue" />
+            <Button
+                text="Iniciar sesión"
+                color="blue"
+                customStyles={{ width: '100%' }}
+            />
             <div className="authentication__bottom">
                 <p>Aún no tienes una cuenta?</p>
                 <span onClick={() => changeFormHandler('signup')}>
                     Registrarse
                 </span>
             </div>
+            <Link to="/forgotPassword">Olvidaste tu contraseña?</Link>
         </form>
     ) : (
         <div></div>
