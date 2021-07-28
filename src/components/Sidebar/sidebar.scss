@@ -1,0 +1,76 @@
+@import './../../sass/abstracts/variables';
+@import './../../sass/abstracts/mixins';
+
+.sidebar {
+    background: $black-primary;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    &__user {
+        width: 100%;
+        height: 20rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        & img {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 20rem;
+            border: 3px solid $blue-secondary;
+        }
+
+        & h4 {
+            font-size: 1.8rem;
+            margin-top: 5px;
+            color: $white;
+        }
+    }
+
+    &__navigation {
+        flex: 1;
+        & ul {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 3rem 0;
+        }
+        & ul li {
+            display: flex;
+            justify-content: center;
+        }
+        & ul li {
+            margin: 2rem 0;
+        }
+        & ul li a {
+            font-size: 1.4rem;
+            color: $white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 15px 18px;
+            width: 80%;
+            text-align: center;
+            &:hover {
+                background: #31272a;
+            }
+        }
+    }
+
+    &__logout {
+        width: 100%;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & img {
+            width: 1rem;
+            margin-right: 1rem;
+        }
+        & a {
+            font-size: 1.2rem;
+            color: $white;
+        }
+    }
+}

@@ -21,6 +21,7 @@ interface IResetPasswordData {
 
 const createError = (error: any) => {
     let err = '';
+    console.log('this is the error', error);
     if (error.response.data.message) {
         err = error.response.data.message;
     } else if (error.response.data.errors.length > 0) {
