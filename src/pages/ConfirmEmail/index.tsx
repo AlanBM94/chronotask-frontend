@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import chronotask_black_logo from './../../images/chronotask-black-logo.png';
 import Spinner from './../../components/Spinner';
-import { useActions } from './../../hooks/use-action';
+import { useActions } from '../../hooks/use-action';
 import Toast from './../../components/Toast';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 import Button from './../../components/Button';
 import { useLocation, Redirect } from 'react-router-dom';
 

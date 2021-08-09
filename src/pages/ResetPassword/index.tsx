@@ -4,7 +4,7 @@ import chronotask_black_logo from './../../images/chronotask-black-logo.png';
 import ResetPasswordForm from './../../components/ResetPasswordForm';
 import Toast from './../../components/Toast';
 import Spinner from './../../components/Spinner';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { Redirect } from 'react-router-dom';
 
 const ResetPassword: React.FC = () => {

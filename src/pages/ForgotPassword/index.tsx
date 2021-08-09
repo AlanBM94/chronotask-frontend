@@ -3,7 +3,7 @@ import chronotask_black_logo from './../../images/chronotask-black-logo.png';
 import Spinner from './../../components/Spinner';
 import Toast from './../../components/Toast';
 import ForgotPasswordForm from './../../components/ForgotPasswordForm';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 
 const ForgotPassword: React.FC = () => {
     const auth = useTypedSelector((state) => state.auth);

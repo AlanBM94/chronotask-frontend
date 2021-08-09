@@ -1,0 +1,49 @@
+@import './../../sass/abstracts/variables';
+
+.task {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    border-radius: 5px;
+    padding: 1rem;
+
+    &--Curso {
+        background: $light-purple;
+    }
+
+    &--Entretenimiento {
+        background: $dark-blue;
+    }
+
+    &--Trabajo {
+        background: $purple;
+    }
+
+    &__title h4 {
+        font-size: 1.8rem;
+        color: $white;
+    }
+
+    &__tag {
+        display: flex;
+    }
+
+    &__tag p {
+        font-size: 1.2rem;
+        color: $white;
+        opacity: 0.6;
+        font-weight: 600;
+        margin-right: 5px;
+    }
+
+    &__buttons {
+        margin-top: auto;
+        margin-left: auto;
+        & button {
+            background: transparent;
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+    }
+}

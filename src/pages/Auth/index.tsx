@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Logo from './../../images/logo';
+import Logo from '../../images/logo';
 import Login from '../../components/LogIn';
 import SignUp from '../../components/SignUp';
 import background from './../../images/background.jpg';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 import Spinner from './../../components/Spinner';
 import Toast from './../../components/Toast';
 import { Redirect } from 'react-router-dom';

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Input from './../Input';
 import Button from './../Button';
-import { useActions } from './../../hooks/use-action';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useActions } from '../../hooks/use-action';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 
 interface ISignUp {
     changeFormHandler: (formType: string) => void;

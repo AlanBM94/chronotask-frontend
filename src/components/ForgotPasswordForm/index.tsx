@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useActions } from './../../hooks/use-action';
+import { useActions } from '../../hooks/use-action';
 import Input from './../Input';
 import Button from './../Button';
 import './forgotPasswordForm.scss';

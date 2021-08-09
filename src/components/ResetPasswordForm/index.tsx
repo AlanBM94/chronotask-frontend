@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useActions } from './../../hooks/use-action';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useActions } from '../../hooks/use-action';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 import { useRouteMatch } from 'react-router';
 import Input from './../Input';
 import Button from './../Button';

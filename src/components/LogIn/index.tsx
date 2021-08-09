@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Input from './../Input';
 import Button from './../Button';
-import { useActions } from './../../hooks/use-action';
-import { useTypedSelector } from './../../hooks/use-typed-selector';
+import { useActions } from '../../hooks/use-action';
+import { useTypedSelector } from '../../hooks/use-typed-selector';
 
 interface ILogIn {
     changeFormHandler: (formType: string) => void;
