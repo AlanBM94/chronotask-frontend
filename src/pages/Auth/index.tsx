@@ -22,7 +22,7 @@ const Authentication = () => {
         }
     };
 
-    if (auth.user) {
+    if (localStorage.getItem('chronotask-token')) {
         return (
             <Redirect
                 to={{

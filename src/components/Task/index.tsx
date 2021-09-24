@@ -6,6 +6,7 @@ import youtubeIcon from './../../images/youtube.svg';
 import timeIcon from './../../images/time.svg';
 import editIcon from './../../images/edit.svg';
 import trashIcon from './../../images/trash.svg';
+import { Link } from 'react-router-dom';
 
 interface ITask {
     title: string;
@@ -30,9 +31,9 @@ const Task: React.FC<ITask> = ({ title, tag, id }) => {
                 )}
             </div>
             <div className="task__buttons">
-                <button>
+                <Link to={`task/${id}`}>
                     <img src={timeIcon} alt="time-icon" />
-                </button>
+                </Link>
                 <button>
                     <img src={editIcon} alt="edit-icon" />
                 </button>

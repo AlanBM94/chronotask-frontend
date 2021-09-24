@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './sidebar.scss';
 import logoutIcon from './../../images/logout.svg';
+import { Redirect } from 'react-router';
 
 const SideBar: React.FC = () => {
+    const [logoutUser, setLogoutUser] = useState(false);
+
+    const logout = () => {
+        localStorage.removeItem('chronotask-token');
+        setLogoutUser(true);
+    };
+
+    if (logoutUser) {
+        return <Redirect to="/" />;
+    }
+
     return (
         <div className="sidebar">
             <div className="sidebar__user">
@@ -29,10 +41,10 @@ const SideBar: React.FC = () => {
                 </ul>
             </div>
             <div className="sidebar__logout">
-                <a href="#">
+                <button onClick={logout}>
                     <img src={logoutIcon} alt="logout-icon" />
                     Cerrar sesión
-                </a>
+                </button>
             </div>
         </div>
     );
