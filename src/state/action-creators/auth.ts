@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 import { Action } from './../actions';
 import { ActionType } from './../action-types';
+import { setHeaders } from './../../helpers';
 
 interface ISignUpData {
     name: string;
@@ -21,7 +22,7 @@ interface IResetPasswordData {
 
 const createError = (error: any) => {
     let err = '';
-    if (error.response.data.message) {
+    if (error?.response.data.message) {
         err = error.response.data.message;
     } else if (error.response.data.errors.length > 0) {
         err = error.response.data.errors
@@ -147,6 +148,33 @@ export const confirmEmail =
         } catch (error) {
             dispatch({
                 type: ActionType.CONFIRM_EMAIL_ERROR,
+                payload: createError(error),
+            });
+        }
+    };
+
+export const loadUser =
+    (token: string) => async (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.LOAD_PROFILE,
+        });
+        console.log('loadUser token', token);
+        try {
+            const { data } = await axios.get(
+                'http://localhost:7000/api/v1/users/me',
+                setHeaders(token)
+            );
+
+            console.log('response', data);
+
+            dispatch({
+                type: ActionType.LOAD_PROFILE_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            console.log('this is the error', error);
+            dispatch({
+                type: ActionType.LOAD_PROFILE_ERROR,
                 payload: createError(error),
             });
         }

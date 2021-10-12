@@ -117,6 +117,21 @@ const reducer = produce((state: AuthState = initialState, action: Action) => {
             state.error = action.payload;
             state.user = null;
             return state;
+        case ActionType.LOAD_PROFILE:
+            state.loading = true;
+            state.error = null;
+            state.user = null;
+            return state;
+        case ActionType.LOAD_PROFILE_SUCCESS:
+            state.loading = false;
+            state.error = null;
+            state.user = action.payload;
+            return state;
+        case ActionType.LOAD_PROFILE_ERROR:
+            state.loading = false;
+            state.error = action.payload;
+            state.user = null;
+            return state;
         default:
             return state;
     }

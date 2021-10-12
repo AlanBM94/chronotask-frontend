@@ -15,4 +15,7 @@ export enum ActionType {
     RESET_PASSWORD = 'reset_password',
     RESET_PASSWORD_COMPLETE = 'reset_password_complete',
     RESET_PASSWORD_ERROR = 'reset_password_error',
+    LOAD_PROFILE = 'load_profile',
+    LOAD_PROFILE_SUCCESS = 'load_profile_success',
+    LOAD_PROFILE_ERROR = 'load_profile_error',
 }

@@ -66,8 +66,22 @@ export interface ConfirmEmailSuccess {
     type: ActionType.CONFIRM_EMAIL_SUCCESS;
     payload: UserResponse;
 }
+
 export interface ConfirmEmailError {
     type: ActionType.CONFIRM_EMAIL_ERROR;
+    payload: string;
+}
+
+export interface LoadProfile {
+    type: ActionType.LOAD_PROFILE;
+}
+export interface LoadProfileSuccess {
+    type: ActionType.LOAD_PROFILE_SUCCESS;
+    payload: UserResponse;
+}
+
+export interface LoadProfileError {
+    type: ActionType.LOAD_PROFILE_ERROR;
     payload: string;
 }
 
@@ -87,4 +101,7 @@ export type Action =
     | SendEmailVerification
     | ConfirmEmail
     | ConfirmEmailSuccess
-    | ConfirmEmailError;
+    | ConfirmEmailError
+    | LoadProfile
+    | LoadProfileSuccess
+    | LoadProfileError;
