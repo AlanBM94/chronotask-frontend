@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './sidebar.scss';
 import logoutIcon from './../../images/logout.svg';
 import { Redirect } from 'react-router';
 import { useTypedSelector } from './../../hooks/use-typed-selector';
+import Spinner from './../Spinner';
+import { useActions } from '../../hooks/use-action';
 
 const SideBar: React.FC = () => {
-    const [logoutUser, setLogoutUser] = useState(false);
+    const { logout } = useActions();
+
     const auth = useTypedSelector((state) => state.auth);
 
-    const logout = () => {
-        localStorage.removeItem('chronotask-token');
-        setLogoutUser(true);
+    const logoutHandler = () => {
+        logout();
     };
-
-    useEffect(() => {
-        console.log('auth in sidebar', auth);
-    }, [auth]);
-
-    if (logoutUser) {
-        return <Redirect to="/" />;
-    }
 
     return (
         <div className="sidebar">
@@ -47,7 +41,7 @@ const SideBar: React.FC = () => {
                 </ul>
             </div>
             <div className="sidebar__logout">
-                <button onClick={logout}>
+                <button onClick={logoutHandler}>
                     <img src={logoutIcon} alt="logout-icon" />
                     Cerrar sesión
                 </button>

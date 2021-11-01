@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../../images/logo';
 import Login from '../../components/LogIn';
 import SignUp from '../../components/SignUp';
@@ -21,6 +21,10 @@ const Authentication = () => {
             setFormType('signup');
         }
     };
+
+    useEffect(() => {
+        console.log(auth);
+    }, [auth]);
 
     if (localStorage.getItem('chronotask-token')) {
         return (

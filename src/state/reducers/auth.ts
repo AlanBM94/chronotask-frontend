@@ -132,6 +132,8 @@ const reducer = produce((state: AuthState = initialState, action: Action) => {
             state.error = action.payload;
             state.user = null;
             return state;
+        case ActionType.LOGOUT:
+            return initialState;
         default:
             return state;
     }

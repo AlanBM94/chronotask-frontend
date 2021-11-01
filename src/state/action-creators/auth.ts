@@ -158,14 +158,11 @@ export const loadUser =
         dispatch({
             type: ActionType.LOAD_PROFILE,
         });
-        console.log('loadUser token', token);
         try {
             const { data } = await axios.get(
                 'http://localhost:7000/api/v1/users/me',
                 setHeaders(token)
             );
-
-            console.log('response', data);
 
             dispatch({
                 type: ActionType.LOAD_PROFILE_SUCCESS,
@@ -179,3 +176,11 @@ export const loadUser =
             });
         }
     };
+
+export const logout = () => async (dispatch: Dispatch<Action>) => {
+    localStorage.removeItem('chronotask-token');
+    dispatch({
+        type: ActionType.LOGOUT,
+    });
+    window.location.href = '/';
+};

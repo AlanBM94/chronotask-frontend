@@ -85,6 +85,10 @@ export interface LoadProfileError {
     payload: string;
 }
 
+export interface LogOut {
+    type: ActionType.LOGOUT;
+}
+
 export type Action =
     | SignUp
     | SignUpComplete
@@ -104,4 +108,5 @@ export type Action =
     | ConfirmEmailError
     | LoadProfile
     | LoadProfileSuccess
-    | LoadProfileError;
+    | LoadProfileError
+    | LogOut;

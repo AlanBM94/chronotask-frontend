@@ -18,4 +18,5 @@ export enum ActionType {
     LOAD_PROFILE = 'load_profile',
     LOAD_PROFILE_SUCCESS = 'load_profile_success',
     LOAD_PROFILE_ERROR = 'load_profile_error',
+    LOGOUT = 'logout',
 }

@@ -5,6 +5,7 @@ interface ButtonProps {
     text: string;
     color: string;
     customStyles?: {};
+    transparent?: boolean;
     event?: () => void;
 }
 
@@ -13,10 +14,13 @@ const Button: React.FC<ButtonProps> = ({
     color,
     event,
     customStyles,
+    transparent,
 }) => {
     return (
         <button
-            className={`button button--${color}`}
+            className={`button button--${color} ${
+                transparent ? `button--${color}--transparent` : ''
+            }`}
             onClick={event}
             style={customStyles}
         >

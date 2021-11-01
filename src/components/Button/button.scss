@@ -1,13 +1,20 @@
 @import './../../sass/abstracts/variables';
+@import './../../sass/abstracts/mixins';
 
 .button {
     height: 5rem;
     width: fit-content;
     padding: 10px 16px;
+    border-radius: $border-radius;
     &--blue {
         background: $blue-primary;
-        color: white;
+        color: $black-primary;
         font-size: 1.5rem;
         font-weight: 700;
+        &--transparent {
+            background: transparent;
+            color: $blue-primary;
+            border: 2px solid $blue-primary;
+        }
     }
 }

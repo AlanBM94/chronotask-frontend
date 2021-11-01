@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './../Dashboard/dashboard.scss';
 import './taskTimer.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import RoundedButton from './RoundedButton';
 import Display from './../../components/Display';
 import entertainmentIcon from './../../images/youtube.svg';
@@ -10,6 +10,8 @@ import PauseIcon from './../../images/PauseIcon';
 import RedoIcon from './../../images/RedoIcon';
 import CheckIcon from './../../images/CheckIcon';
 import Sidebar from '../../components/Sidebar';
+import Modal from '../../components/Modal';
+import CancelTimerMessage from '../../components/CancelTimerMessage';
 
 const TaskTimer: React.FC = () => {
     let { id } = useParams<{ id?: string }>();
@@ -19,6 +21,11 @@ const TaskTimer: React.FC = () => {
     const [disabledButtons, setDisabledButtons] = useState({ play: false });
     const [resumeButtonActive, setResumeButtonActive] = useState(false);
     const [pauseButtonActive, setPauseButtonActive] = useState(false);
+    const [
+        userWantsToLeaveAndTimerIsRunning,
+        setUserWantsToLeaveAndTimerIsRunning,
+    ] = useState(false);
+    const [goToDashboard, setGoToDashboard] = useState(false);
     let updatedMs = time.ms;
     let updatedS = time.s;
     let updatedM = time.m;
@@ -96,12 +103,34 @@ const TaskTimer: React.FC = () => {
 
     const finish = () => {};
 
+    const onCloseHandler = () => {
+        if (status === 1 || status === 2) {
+            pause();
+            setUserWantsToLeaveAndTimerIsRunning(true);
+            return;
+        }
+        setGoToDashboard(true);
+    };
+
     useEffect(() => {
+        if (status === 0) {
+            setUserWantsToLeaveAndTimerIsRunning(false);
+        }
         if (status === 1) {
             return setDisabledButtons({ play: true });
         }
         setDisabledButtons({ play: false });
     }, [status]);
+
+    if (goToDashboard) {
+        return (
+            <Redirect
+                to={{
+                    pathname: '/dashboard',
+                }}
+            />
+        );
+    }
 
     if (!id) {
         return null;
@@ -112,6 +141,20 @@ const TaskTimer: React.FC = () => {
             <div className="dashboard__sidebar">
                 <Sidebar />
             </div>
+            <Modal
+                isOpen={userWantsToLeaveAndTimerIsRunning}
+                size={{
+                    width: '300',
+                    height: '200',
+                }}
+                onClose={() => setUserWantsToLeaveAndTimerIsRunning(false)}
+                handleClose={() => setUserWantsToLeaveAndTimerIsRunning(false)}
+            >
+                <CancelTimerMessage
+                    onCancel={() => setUserWantsToLeaveAndTimerIsRunning(false)}
+                />
+            </Modal>
+
             <div className="dashboard__content">
                 <div className={`taskTimer taskTimer--${task.tag}`}>
                     <div className="taskTimer__top">
@@ -122,7 +165,10 @@ const TaskTimer: React.FC = () => {
                                 <img src={setIcon()} alt={task.tag} />
                             </div>
                         </div>
-                        <div className="taskTimer__close" />
+                        <div
+                            className="taskTimer__close"
+                            onClick={onCloseHandler}
+                        />
                     </div>
                     <div className="taskTimer__timer">
                         <div className="taskTimer__timerButtons">

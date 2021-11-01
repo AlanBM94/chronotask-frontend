@@ -1,4 +1,24 @@
+@import './variables';
+
 @mixin whiteInputText {
     color: white;
     opacity: 0.8;
+}
+
+@mixin buttonStyles {
+    height: 5rem;
+    width: fit-content;
+    padding: 10px 16px;
+    border-radius: $border-radius;
+    &--blue {
+        background: $blue-primary;
+        color: $black-primary;
+        font-size: 1.5rem;
+        font-weight: 700;
+        &--transparent {
+            background: transparent;
+            color: $blue-primary;
+            border: 2px solid $blue-primary;
+        }
+    }
 }
