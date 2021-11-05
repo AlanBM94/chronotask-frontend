@@ -58,6 +58,13 @@ const Modal: React.FC<ModalProps> = ({
         }
     };
 
+    const handleClickModal = (e: any) => {
+        //Eventos para prevenir la propagación del evento hacía el padre y solo cerrar el modal al hacer click afuera
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    };
+
     const customStyle = {
         width: `${size.width}px`,
         height: `${size.height}px`,
@@ -65,7 +72,12 @@ const Modal: React.FC<ModalProps> = ({
 
     return ReactDOM.createPortal(
         <div ref={modalRef} className="overlay" onClick={handleClickOverlay}>
-            <div className="modal" tabIndex={-1} style={customStyle}>
+            <div
+                className="modal"
+                onClick={handleClickModal}
+                tabIndex={-1}
+                style={customStyle}
+            >
                 <button className={'btnClose'} onClick={closeModal}>
                     <button>X</button>
                 </button>

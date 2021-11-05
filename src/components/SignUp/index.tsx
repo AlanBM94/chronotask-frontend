@@ -3,37 +3,26 @@ import Input from './../Input';
 import Button from './../Button';
 import { useActions } from '../../hooks/use-action';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
+import useRegister from '../../hooks/useRegisterForm';
 
 interface ISignUp {
     changeFormHandler: (formType: string) => void;
 }
 
 const SignUp: React.FC<ISignUp> = ({ changeFormHandler }) => {
-    const [formState, setFormState] = useState({
-        name: '',
-        email: '',
-        password: '',
-    });
-    const [passwordType, setPasswordType] = useState('password');
     const { signUp } = useActions();
     const auth = useTypedSelector((state) => state.auth);
-
-    const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormState({ ...formState, [event.target.name]: event.target.value });
-    };
-
-    const showPasswordHandler = () => {
-        if (passwordType === 'password') {
-            setPasswordType('text');
-        } else {
-            setPasswordType('password');
-        }
-    };
-
-    const onSubmitHandler = (event: React.FormEvent) => {
-        event.preventDefault();
-        signUp(formState);
-    };
+    const {
+        name,
+        email,
+        password,
+        passwordInputType,
+        showPasswordHandler,
+        onNameChangeHandler,
+        onEmailChangeHandler,
+        onPasswordChangeHandler,
+        onSubmitHandler,
+    } = useRegister(signUp);
 
     return !auth.loading ? (
         <form action="#" onSubmit={onSubmitHandler}>
@@ -41,25 +30,25 @@ const SignUp: React.FC<ISignUp> = ({ changeFormHandler }) => {
                 name="name"
                 placeholder="Usuario"
                 type="text"
-                value={formState.name}
+                value={name}
                 icon="fas fa-user"
-                onChangeHandler={onChangeHandler}
+                onChangeHandler={onNameChangeHandler}
             />
             <Input
                 name="email"
                 type="email"
                 placeholder="Email"
-                value={formState.email}
+                value={email}
                 icon="fas fa-envelope"
-                onChangeHandler={onChangeHandler}
+                onChangeHandler={onEmailChangeHandler}
             />
             <Input
                 name="password"
-                type={passwordType}
+                type={passwordInputType}
                 placeholder="Contraseña"
-                value={formState.password}
+                value={password}
                 icon="fas fa-lock"
-                onChangeHandler={onChangeHandler}
+                onChangeHandler={onPasswordChangeHandler}
             />
             <div className="authentication__showPassword">
                 <input type="checkbox" onClick={showPasswordHandler} />

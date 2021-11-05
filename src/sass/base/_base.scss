@@ -19,7 +19,8 @@ a {
 
 input {
     border: none;
-    &:focus, &:checked {
+    &:focus,
+    &:checked {
         outline: none;
         background: transparent;
     }

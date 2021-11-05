@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './dashboard.scss';
 import { useActions } from '../../hooks/use-action';
 import { useTypedSelector } from '../../hooks/use-typed-selector';
@@ -6,10 +6,13 @@ import Sidebar from './../../components/Sidebar';
 import Button from './../../components/Button';
 import Tasks from '../../components/Tasks';
 import Spinner from '../../components/Spinner';
+import Modal from '../../components/Modal';
 import { Redirect } from 'react-router-dom';
+import NewTaskForm from '../../components/NewTaskForm';
 
 const Dashboard: React.FC = () => {
     const { loadUser } = useActions();
+    const [isNewTaskFormVisible, setIsNewTaskFormVisible] = useState(false);
     const auth = useTypedSelector((state) => state.auth);
     const token = localStorage.getItem('chronotask-token');
 
@@ -35,6 +38,17 @@ const Dashboard: React.FC = () => {
                 </div>
             ) : (
                 <>
+                    <Modal
+                        isOpen={isNewTaskFormVisible}
+                        size={{
+                            width: '300',
+                            height: '400',
+                        }}
+                        onClose={() => setIsNewTaskFormVisible(false)}
+                        handleClose={() => setIsNewTaskFormVisible(false)}
+                    >
+                        <NewTaskForm />
+                    </Modal>
                     <div className="dashboard__sidebar">
                         <Sidebar />
                     </div>
@@ -42,7 +56,7 @@ const Dashboard: React.FC = () => {
                         <Button
                             text="Nueva actividad"
                             color="blue"
-                            event={() => console.log('hey')}
+                            event={() => setIsNewTaskFormVisible(true)}
                         />
                         <div className="dashboard__contentTasks">
                             <Tasks />
